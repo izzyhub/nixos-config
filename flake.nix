@@ -12,6 +12,7 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
@@ -25,6 +26,7 @@
     self,
     nixpkgs,
     home-manager,
+    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -77,6 +79,8 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
+	  hyprland.homeManagerModules.default
+	  {wayland.windowManager.hyprland.enable = true;}
         ];
       };
     };

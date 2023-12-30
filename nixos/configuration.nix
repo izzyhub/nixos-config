@@ -73,6 +73,9 @@
 
   networking.hostName = "nixpad";
   networking.networkmanager.enable = true;
+  programs.hyprland.enable = true;
+  programs.git.enable = true;
+  programs.neovim.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
