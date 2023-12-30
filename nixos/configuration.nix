@@ -71,9 +71,6 @@
     auto-optimise-store = true;
   };
 
-  # FIXME: Add the rest of your current configuration
-
-  # TODO: Set your hostname
   networking.hostName = "nixpad";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer

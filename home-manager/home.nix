@@ -49,11 +49,12 @@
 
   # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "izzy";
+    homeDirectory = "/home/izzy";
   };
 
   # Add stuff for your user as you see fit:
+  programs.vim.enable = true;
   programs.neovim.enable = true;
   programs.git.enable = true;
   home.packages = with pkgs; [ 
