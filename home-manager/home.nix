@@ -56,11 +56,11 @@
   # Add stuff for your user as you see fit:
   programs.vim.enable = true;
   programs.neovim.enable = true;
-  programs.git.enable = true;
   home.packages = with pkgs; [ 
     steam 
     firefox
     obsidian
+    hyprland
   ];
 
   # Enable home-manager and git
@@ -71,5 +71,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
+  home.stateVersion = "23.05";
 }
