@@ -72,7 +72,7 @@
   };
 
   networking.hostName = "nixpad";
-  networking.networkmangager.enable = true;
+  networking.networkmanager.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
