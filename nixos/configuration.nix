@@ -69,11 +69,16 @@
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
+    substituters =  ["https://hyprland.cachix.org"];
+    trusted-public-keys =  ["hyprland.cachix.org-1:a7pgxzM7+chwVL3/pzj5jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   networking.hostName = "nixpad";
   networking.networkmanager.enable = true;
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
   programs.git.enable = true;
   programs.neovim.enable = true;
 
