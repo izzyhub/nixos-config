@@ -1,4 +1,4 @@
-{ pkgs, ... };
+{ pkgs, ... }:
 
 {
   imports = [
@@ -16,7 +16,7 @@
     libnotify
   ];
 
-  programs.wofi.enable = true
+  programs.wofi.enable = true;
 
   wayland.windowManager.hyprland = {
    enable = true;
@@ -24,5 +24,5 @@
    # See https://wiki.hyprland.org/Configuration/Monitors
    # See https://wiki.hyprland.org/Configuration/Keyboards
    #'';
-  }
+  };
 }
