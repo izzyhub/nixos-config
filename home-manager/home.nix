@@ -7,7 +7,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+    flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/arhives/master.tar.gz";
+    hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
