@@ -18,6 +18,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    inputs.hyprland.homeManagerModules.default
+    ./hyprland
   ];
 
   nixpkgs = {
@@ -60,7 +62,7 @@
     steam 
     firefox
     obsidian
-    hyprland
+    mpv
   ];
 
   # Enable home-manager and git
