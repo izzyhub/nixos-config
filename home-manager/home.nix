@@ -62,8 +62,28 @@
     steam 
     firefox
     obsidian
+
     mpv
+    font-manager
+    playerctl
+    swww
+    wl-clipboard
+    slurp
+    inputs.hyprland-contrib.packages.x86_64-linux.grimblast
+    rofi-emoji
+    libnotify
+    kitty
   ];
+
+  programs.wofi.enable = true;
+  wayland.windowManager.hyprland = {
+	  enable = true;
+	  extraConfig = ''
+          # See https://wiki.hyprland.org/Configuration/Monitors
+          # See https://wiki.hyprland.org/Configuration/Keyboards
+	  bind = SUPER, Return, exec, kitty
+	  '';
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

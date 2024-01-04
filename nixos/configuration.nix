@@ -22,6 +22,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    #./hyprland.nix
   ];
 
   nixpkgs = {
@@ -78,6 +79,7 @@
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    xwayland.enable = true;
   };
   programs.git.enable = true;
   programs.neovim.enable = true;
@@ -98,7 +100,7 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "networkmanager" "audio" "docker"];
+      extraGroups = ["wheel" "networkmanager" "audio" "docker" "video"];
     };
   };
 
