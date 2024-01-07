@@ -19,7 +19,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./hyprland
+    #./hyprland
   ];
 
   nixpkgs = {
@@ -75,6 +75,11 @@
     kitty
   ];
 
+  # Enable home-manager and git
+  programs.home-manager.enable = true;
+  programs.git.enable = true;
+  programs.kitty.enable = true;
+
   programs.wofi.enable = true;
   wayland.windowManager.hyprland = {
 	  enable = true;
@@ -83,12 +88,11 @@
           # See https://wiki.hyprland.org/Configuration/Keyboards
 	  bind = SUPER, Return, exec, kitty
 	  '';
-  };
+	  package = pkgs.hyprland;
+	  xwayland.enable = true;
 
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
-  programs.kitty.enable = true;
+	  systemd.enable = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
