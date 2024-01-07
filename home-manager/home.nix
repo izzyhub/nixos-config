@@ -52,7 +52,8 @@
     };
   };
 
-  # TODO: Set your username
+  fonts.fontconfig.enable = true;
+
   home = {
     username = "izzy";
     homeDirectory = "/home/izzy";
@@ -62,6 +63,8 @@
   programs.vim.enable = true;
   programs.neovim.enable = true;
   home.packages = with pkgs; [ 
+
+    nerdfonts
     steam 
     firefox
     obsidian
@@ -73,9 +76,14 @@
     wl-clipboard
     slurp
     inputs.hyprland-contrib.packages.x86_64-linux.grimblast
+    waybar
+    rofi-wayland
     rofi-emoji
     libnotify
     kitty
+    eww-wayland
+    btop
+    dunst
   ];
 
   # Enable home-manager and git
@@ -83,14 +91,34 @@
   programs.git.enable = true;
   programs.kitty.enable = true;
 
-  programs.wofi.enable = true;
+  programs.zsh = {
+    enable = true;
+
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+    initExtra = ''
+    '';
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "marlonrichert/zsh-autocomplete"; }
+      ];
+    };
+  };
+  programs.starship = {
+    enable = true;
+    settings = pkgs.lib.importTOML ./starship.toml;
+  };
+  home.file."./.config/nvim" = {
+    source = ./nvim;
+    recursive = true;
+  }
+  home.file."./.config/hypr/autostart".text = builtins.readFile(
+    ./hyprland/autostart
+  );
   wayland.windowManager.hyprland = {
 	  enable = true;
-	  extraConfig = ''
-          # See https://wiki.hyprland.org/Configuration/Monitors
-          # See https://wiki.hyprland.org/Configuration/Keyboards
-	  bind = SUPER, Return, exec, kitty
-	  '';
+	  extraConfig = builtins.readFile(./hyprland/hyprland.conf);
 	  package = pkgs.hyprland;
 	  xwayland.enable = true;
 

@@ -70,12 +70,13 @@
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
-    substituters =  ["https://hyprland.cachix.org"];
-    trusted-public-keys =  ["hyprland.cachix.org-1:a7pgxzM7+chwVL3/pzj5jIBMioiJM7ypFP8PwtkuGc="];
+    #substituters =  ["https://hyprland.cachix.org"];
+    #trusted-public-keys =  ["hyprland.cachix.org-1:a7pgxzM7+chwVL3/pzj5jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   networking.hostName = "nixpad";
   networking.networkmanager.enable = true;
+  programs.zsh.enable = true;
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -92,6 +93,7 @@
   users.users = {
     # FIXME: Replace with your username
     izzy = {
+      shell = pkgs.zsh;
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
