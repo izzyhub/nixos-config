@@ -1,0 +1,316 @@
+warning: Git tree '/home/izzy/dots' is dirty
+error:
+       … while calling the 'derivationStrict' builtin
+
+         at /builtin/derivation.nix:9:12: (source not available)
+
+       … while evaluating derivation 'home-manager-generation'
+         whose name attribute is located at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/stdenv/generic/make-derivation.nix:348:7
+
+       … while evaluating attribute 'buildCommand' of derivation 'home-manager-generation'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/build-support/trivial-builders/default.nix:87:14:
+
+           86|       enableParallelBuilding = true;
+           87|       inherit buildCommand name;
+             |              ^
+           88|       passAsFile = [ "buildCommand" ]
+
+       … while evaluating derivation 'activation-script'
+         whose name attribute is located at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/stdenv/generic/make-derivation.nix:348:7
+
+       … while evaluating attribute 'text' of derivation 'activation-script'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/build-support/trivial-builders/default.nix:148:16:
+
+          147|     runCommand name
+          148|       { inherit text executable checkPhase allowSubstitutes preferLocalBuild;
+             |                ^
+          149|         passAsFile = [ "text" ];
+
+       … while calling 'mkCmd'
+
+         at /nix/store/ih8sqkbk1nwvz7rj4sjvhsmpzp1dbwv8-source/modules/home-environment.nix:672:17:
+
+          671|       let
+          672|         mkCmd = res: ''
+             |                 ^
+          673|             _iNote "Activating %s" "${res.name}"
+
+       … while calling 'g'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:629:19:
+
+          628|           g =
+          629|             name: value:
+             |                   ^
+          630|             if isAttrs value && cond value
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:632:20:
+
+          631|               then recurse (path ++ [name]) value
+          632|               else f (path ++ [name]) value;
+             |                    ^
+          633|         in mapAttrs g;
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:242:72:
+
+          241|           # For definitions that have an associated option
+          242|           declaredConfig = mapAttrsRecursiveCond (v: ! isOption v) (_: v: v.value) options;
+             |                                                                        ^
+          243|
+
+       … while evaluating the option `home.activation.installPackages.data':
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:822:28:
+
+          821|         # Process mkMerge and mkIf properties.
+          822|         defs' = concatMap (m:
+             |                            ^
+          823|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+
+       … while evaluating definitions from `/nix/store/ih8sqkbk1nwvz7rj4sjvhsmpzp1dbwv8-source/modules/home-environment.nix':
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:823:137:
+
+          822|         defs' = concatMap (m:
+          823|           map (value: { inherit (m) file; inherit value; }) (builtins.addErrorContext "while evaluating definitions from `${m.file}':" (dischargeProperties m.value))
+             |                                                                                                                                         ^
+          824|         ) defs;
+
+       … while calling 'dischargeProperties'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:894:25:
+
+          893|   */
+          894|   dischargeProperties = def:
+             |                         ^
+          895|     if def._type or "" == "merge" then
+
+       … while evaluating derivation 'home-manager-path'
+         whose name attribute is located at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/stdenv/generic/make-derivation.nix:348:7
+
+       … while evaluating attribute 'passAsFile' of derivation 'home-manager-path'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/build-support/trivial-builders/default.nix:88:7:
+
+           87|       inherit buildCommand name;
+           88|       passAsFile = [ "buildCommand" ]
+             |       ^
+           89|         ++ (derivationArgs.passAsFile or []);
+
+       … while evaluating derivation 'home-configuration-reference-manpage'
+         whose name attribute is located at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/stdenv/generic/make-derivation.nix:348:7
+
+       … while evaluating attribute 'buildCommand' of derivation 'home-configuration-reference-manpage'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/build-support/trivial-builders/default.nix:87:14:
+
+           86|       enableParallelBuilding = true;
+           87|       inherit buildCommand name;
+             |              ^
+           88|       passAsFile = [ "buildCommand" ]
+
+       … while evaluating derivation 'options.json'
+         whose name attribute is located at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/pkgs/stdenv/generic/make-derivation.nix:348:7
+
+       … while evaluating attribute 'options' of derivation 'options.json'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/nixos/lib/make-options-doc/default.nix:125:7:
+
+          124|       ];
+          125|       options = builtins.toFile "options.json"
+             |       ^
+          126|         (builtins.unsafeDiscardStringContext (builtins.toJSON optionsNix));
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/nixos/lib/make-options-doc/default.nix:57:17:
+
+           56|   filteredOpts = lib.filter (opt: opt.visible && !opt.internal) transformedOpts;
+           57|   optionsList = lib.flip map filteredOpts
+             |                 ^
+           58|    (opt: opt
+
+       … while calling 'flip'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/trivial.nix:138:16:
+
+          137|   */
+          138|   flip = f: a: b: f b a;
+             |                ^
+          139|
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/nixos/lib/make-options-doc/default.nix:54:13:
+
+           53| let
+           54|   rawOpts = lib.optionAttrSetToDocList options;
+             |             ^
+           55|   transformedOpts = map transformOptions rawOpts;
+
+       … while calling 'optionAttrSetToDocList''
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/options.nix:302:32:
+
+          301|
+          302|   optionAttrSetToDocList' = _: options:
+             |                                ^
+          303|     concatMap (opt:
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/options.nix:340:67:
+
+          339|         # builtins.trace opt.loc
+          340|         [ docOption ] ++ optionals subOptionsVisible subOptions) (collect isOption options);
+             |                                                                   ^
+          341|
+
+       … while calling 'collect'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:443:3:
+
+          442|   # The attribute set to recursively collect.
+          443|   attrs:
+             |   ^
+          444|     if pred attrs then
+
+       … while calling 'collect'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:443:3:
+
+          442|   # The attribute set to recursively collect.
+          443|   attrs:
+             |   ^
+          444|     if pred attrs then
+
+       … while calling 'collect'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:443:3:
+
+          442|   # The attribute set to recursively collect.
+          443|   attrs:
+             |   ^
+          444|     if pred attrs then
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/attrsets.nix:444:8:
+
+          443|   attrs:
+          444|     if pred attrs then
+             |        ^
+          445|       [ attrs ]
+
+       … while calling 'isType'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/types.nix:70:18:
+
+           69| rec {
+           70|   isType = type: x: (x._type or "") == type;
+             |                  ^
+           71|
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:674:37:
+
+          673|
+          674|       matchedOptions = mapAttrs (n: v: v.matchedOptions) resultsByName;
+             |                                     ^
+          675|
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:644:32:
+
+          643|             in {
+          644|               matchedOptions = evalOptionValue loc opt defns';
+             |                                ^
+          645|               unmatchedDefns = [];
+
+       … while calling 'evalOptionValue'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:778:31:
+
+          777|      config value. */
+          778|   evalOptionValue = loc: opt: defs:
+             |                               ^
+          779|     let
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:803:9:
+
+          802|       warnDeprecation =
+          803|         warnIf (opt.type.deprecationMessage != null)
+             |         ^
+          804|           "The type `types.${opt.type.name}' of option `${showOption loc}' defined in ${showFiles opt.declarations} is deprecated. ${opt.type.deprecationMessage}";
+
+       … while calling 'warnIf'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/trivial.nix:357:18:
+
+          356|   */
+          357|   warnIf = cond: msg: if cond then warn msg else x: x;
+             |                  ^
+          358|
+
+       … from call site
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:642:23:
+
+          641|           if length optionDecls == length decls then
+          642|             let opt = fixupOptionType loc (mergeOptionDecls loc decls);
+             |                       ^
+          643|             in {
+
+       … while calling 'fixupOptionType'
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:955:26:
+
+          954|   # TODO: Merge this into mergeOptionDecls
+          955|   fixupOptionType = loc: opt:
+             |                          ^
+          956|     if opt.type.getSubModules or null == null
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:504:44:
+
+          503|       context = name: ''while evaluating the module argument `${name}' in "${key}":'';
+          504|       extraArgs = builtins.mapAttrs (name: _:
+             |                                            ^
+          505|         builtins.addErrorContext (context name)
+
+       … while evaluating the module argument `pkgs' in "/nix/store/ih8sqkbk1nwvz7rj4sjvhsmpzp1dbwv8-source/modules/misc/editorconfig.nix":
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/types.nix:565:29:
+
+          564|       merge = loc: defs:
+          565|         zipAttrsWith (name: defs:
+             |                             ^
+          566|           let merged = mergeDefinitions (loc ++ [name]) elemType defs;
+
+       … while calling anonymous lambda
+
+         at /nix/store/j8han9cf3g8vba52yhiklaa6a500pcbv-source/lib/modules.nix:832:19:
+
+          831|           # Avoid sorting if we don't have to.
+          832|           if any (def: def.value._type or "" == "order") defs''.values
+             |                   ^
+          833|           then sortProperties defs''.values
+
+       error: public key is not valid
