@@ -18,8 +18,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-    #./hyprland
+    ./neovim
   ];
 
   nixpkgs = {
@@ -61,7 +60,6 @@
 
   # Add stuff for your user as you see fit:
   programs.vim.enable = true;
-  programs.neovim.enable = true;
   home.packages = with pkgs; [ 
 
     nerdfonts
@@ -109,10 +107,10 @@
     enable = true;
     settings = pkgs.lib.importTOML ./starship.toml;
   };
-  home.file."./.config/nvim" = {
-    source = ./nvim;
-    recursive = true;
-  }
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
   home.file."./.config/hypr/autostart".text = builtins.readFile(
     ./hyprland/autostart
   );
