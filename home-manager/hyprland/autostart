@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+waybar
+
 swww kill
 swww init
 

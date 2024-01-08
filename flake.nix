@@ -19,6 +19,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixfmt = {
+      url = "github:piegamesde/nixfmt?ref=rfc101-style";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
@@ -32,6 +40,7 @@
     nixpkgs,
     home-manager,
     hyprland,
+    nixfmt,
     ...
   } @ inputs: let
     inherit (self) outputs;
