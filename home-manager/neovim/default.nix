@@ -33,7 +33,7 @@ let
       ripgrep
       fd
       lua-language-server
-      rust-analyzer-unwrapped
+      #rust-analyzer-unwrapped
     ];
 
     programs.neovim = {
@@ -42,10 +42,6 @@ let
       plugins = [
         treesitterWithGrammars
       ];
-    };
-    home.file."./.config/nvim/" = {
-      source = ./nvim;
-      recursive = true;
     };
 
     home.file."./local/share/nvim/nix/nvim-treesitter/" = {

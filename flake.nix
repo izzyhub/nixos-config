@@ -4,6 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    devenv.url = "github:cachix/devenv";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -18,6 +19,10 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     nixfmt = {
       url = "github:piegamesde/nixfmt?ref=rfc101-style";
@@ -27,13 +32,36 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
-    # TODO: Add any other flake you might need
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
+
+    sf-mono-liga-src = {
+      url = "github:shaunsingh/SFMono-Nerd-Font-Ligaturized";
+      flake = false;
+    };
+
+    monolisa = {
+      url = "github:redyf/monolisa";
+      flake = false;
+    };
+
+
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
   };
+
+  #nixConfig = {
+    #extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    #extra-substituters = "https://devenv.cachix.org";
+  #};
 
   outputs = {
     self,
@@ -41,6 +69,9 @@
     home-manager,
     hyprland,
     nixfmt,
+    nixvim,
+    nix-colors,
+    devenv,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -89,7 +120,7 @@
     homeConfigurations = {
       "izzy@nixpad" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs nix-colors;};
         modules = [
           # > Our main home-manager configuration file <
 	  hyprland.homeManagerModules.default

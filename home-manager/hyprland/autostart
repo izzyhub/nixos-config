@@ -3,6 +3,10 @@
 waybar
 
 swww kill
+sleep 2
 swww init
 
 dunst &
+
+wluma &
+waybar &

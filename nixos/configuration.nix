@@ -64,14 +64,20 @@
       value.source = value.flake;
     })
     config.nix.registry;
+  environment.systemPackages = [
+    pkgs.wluma
+  ];
 
   nix.settings = {
     # Enable flakes and new 'nix' command
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
-    #substituters =  ["https://hyprland.cachix.org"];
-    #trusted-public-keys =  ["hyprland.cachix.org-1:a7pgxzM7+chwVL3/pzj5jIBMioiJM7ypFP8PwtkuGc="];
+    substituters =  ["https://hyprland.cachix.org" "https://devenv.cachix.org"];
+    trusted-public-keys =  [
+    "hyprland.cachix.org-1:a7pgxzM7+chwVL3/pzj5jIBMioiJM7ypFP8PwtkuGc=" 
+"devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
   };
 
   networking.hostName = "nixpad";
@@ -83,6 +89,7 @@
     xwayland.enable = true;
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
   programs.git.enable = true;
   programs.neovim.enable = true;
 
@@ -109,6 +116,22 @@
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        user = "greeter";
+      };
+      #default_session_command = ''
+        #${pkgs.greetd.tuigreet}/bin/tuigreet \
+	  #--time \
+	  #--asterisks \
+	  #--user-menus \
+	  #--cmd Hyprland
+      #'';
+    };
+  };
   services.openssh = {
     enable = true;
     settings = {
@@ -119,6 +142,7 @@
     };
   };
 
+  services.automatic-timezoned.enable = true;
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }
